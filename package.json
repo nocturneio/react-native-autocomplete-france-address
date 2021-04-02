@@ -1,6 +1,6 @@
 {
   "name": "react-native-autocomplete-france-address",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/PHClement/react-native-autocomplete-france-address#readme",
   "description": "React Native module to search places using Data.Gouv API in France",
   "main": "./index.js",

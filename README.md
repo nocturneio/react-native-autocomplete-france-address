@@ -1,9 +1,29 @@
-# ReactNativeAlgoliaPlaces
-Module for React Native & Expo that helps you to create an address autocompletion based on Data.gouv
 
+<a href="https://github.com/nocturneio"><img src="https://i.imgur.com/cVSsETP.png" align="left" height="174" width="174"/></a>
+
+## react-native-autocomplete-france-address
+**Module for React Native & Expo that helps you to create an address autocompletion based on Data.gouv**
+
+
+<br>
+
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/clementdlc)
+
+___
 ## Installation
+### NPM
 ```
-npm i react-native-autocomplete-france-address --save
+npm install react-native-autocomplete-france-address --save
+```
+### Yarn
+```
+yard add react-native-autocomplete-france-address
+```
+### Expo
+```
+expo install react-native-autocomplete-france-address --save
 ```
 
 ## Usage
