@@ -1,0 +1,42 @@
+{
+  "name": "react-native-autocomplete-france-address",
+  "version": "0.0.1",
+  "homepage": "https://github.com/PHClement/react-native-autocomplete-france-address#readme",
+  "description": "React Native module to search places using Data.Gouv API in France",
+  "main": "./src/index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "prop-types": "^15.6.2"
+  },
+  "author": "Clément de Louvencourt",
+  "license": "MIT",
+  "peerDependencies": {
+    "@types/react": ">=16.4.18",
+    "react": ">=16.4.1",
+    "react-native": ">=0.56.0"
+  },
+  "devDependencies": {
+    "react": "^16.4.1",
+    "react-native": "^0.56.0"
+  },
+  "bugs": {
+    "url": "https://github.com/nocturneio/react-native-autocomplete-france-address/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nocturneio/react-native-autocomplete-france-address.git"
+  },
+  "keywords": [
+    "ReactNative",
+    "React",
+    "Native",
+    "Android",
+    "IOS",
+    "Search",
+    "places",
+    "Autocomplete",
+    "Address",
+    "France"
+  ],
+  "typings": "./index.d.ts"
+}
