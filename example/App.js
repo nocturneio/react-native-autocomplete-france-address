@@ -3,9 +3,10 @@ import {StyleSheet, View} from 'react-native';
 import AutocompleteAddress from "./index.js";
 
 export default function App() {
+
     return (
         <View style={styles.container}>
-            <AutocompleteAddress inputWidth={400} onFindAddress={(address) => {
+            <AutocompleteAddress isOpen={true} onFindAddress={(address) => {
                 console.log(address)
             }} onSearchError={(e) => {
                 console.log(e)

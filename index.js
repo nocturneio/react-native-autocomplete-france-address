@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { ActivityIndicator, Dimensions, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import {ActivityIndicator, Dimensions, View, Image, Text, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import axios from "axios";
 
@@ -40,21 +40,33 @@ export default class AutocompleteAddress extends Component {
         if(!this.props.isOpen) return (<Fragment/>)
 
         return(
-            <View style={[styles.containerStyle, this.props.containerStyle]}>
-                <TextInput
-                    style={[styles.inputStyle, this.props.inputStyle, {width: this.props.inputWidth}]}
-                    onChangeText={(t) => {
-                        this.setState({query: t, isSearching: true, isLoading: true});
-                        this.searchResults(t);
-                    }}
-                    placeholder={this.props.placeholder}
-                    onBlur={() => {
-                        this.searchResults(this.state.query);
-                    }}
-                />
+            <SafeAreaView style={[styles.containerStyle, this.props.containerStyle]}>
+                <View>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 10}}>
+                        <Text style={styles.placeholderStyle}>{this.props.placeholder}</Text>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.onCloseModal()}>
+                            <Image source={require('./assets/baseline_close_black_24dp.png')} style={{width: 28, height: 28}}/>
+                        </TouchableOpacity>
+                    </View>
+                    <TextInput
+                        style={[styles.inputStyle, this.props.inputStyle, {width: width - 40, marginTop: 10}]}
+                        onChangeText={(t) => {
+                            if(t.length === 0){
+                                this.setState({query: t, isSearching: false, isLoading: false});
+                                return;
+                            }
+                            this.setState({query: t, isSearching: true, isLoading: true});
+                            this.searchResults(t);
+                        }}
+                        placeholder={this.props.placeholder}
+                        onBlur={() => {
+                            this.searchResults(this.state.query);
+                        }}
+                    />
+                </View>
 
                 {this.state.isSearching && (
-                    <View style={[styles.searchBoxContainer, {width: this.props.inputWidth}]}>
+                    <View style={[styles.searchBoxContainer, {width: width}]}>
                         {this.state.isLoading ? (
                             <View style={{marginLeft: 20}}>
                                 <ActivityIndicator/>
@@ -63,14 +75,15 @@ export default class AutocompleteAddress extends Component {
                             <TouchableOpacity onPress={() => {
                                 this.props.onFindAddress(a);
                                 this.setState({isSearching: false});
-                            }} activeOpacity={0.9} key={"search-autocomplete-" + i} style={[styles.rowStyle, {width: this.props.inputWidth}]}>
+                                this.props.onCloseModal();
+                            }} activeOpacity={0.9} key={"search-autocomplete-" + i} style={[styles.rowStyle, {width: width}]}>
                                 <Text style={[styles.addressStyle, this.props.addressStyle]}>{a.properties.name}</Text>
                                 <Text style={[styles.cityStyle, this.props.cityStyle]}>{a.properties.city} ({a.properties.postcode})</Text>
                             </TouchableOpacity>
                         ))}
                     </View>
                 )}
-            </View>
+            </SafeAreaView>
         );
     }
 }
@@ -87,6 +100,7 @@ AutocompleteAddress.defaultProps = {
 
 AutocompleteAddress.propTypes = {
     onSearchError: PropTypes.func,
+    onCloseModal: PropTypes.func,
     onFindAddress: PropTypes.func,
     containerStyle: PropTypes.object,
     inputStyle: PropTypes.object,
@@ -102,13 +116,15 @@ const styles = {
         flex: 1,
         width: width,
         height: height,
-        justifyContent: "center",
+        padding: 20,
+        zIndex: 1000,
+        justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: "#f5f5f5"
     },
     inputStyle: {
         height: 50,
-        width: 300,
+        width: width,
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 5,
@@ -125,26 +141,34 @@ const styles = {
     searchBoxContainer: {
         zIndex: 1000,
         position: 'relative',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'flex-start',
         minHeight: 75,
-        width: 300
+        marginTop: 20,
+        width: width
     },
     rowStyle: {
         flexDirection: 'row',
-        width: 300,
+        width: width,
         alignItems: 'baseline',
         paddingVertical: 20,
-        paddingHorizontal: 15,
+        paddingHorizontal: 30,
         borderBottomWidth: 1,
         borderColor: '#e7e7e7'
     },
     addressStyle: {
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: "800"
     },
+    placeholderStyle: {
+        fontSize: 14,
+        fontWeight: "800",
+        marginBottom: 10,
+        color: "#000",
+        marginTop: 10
+    },
     cityStyle: {
-        fontSize: 8,
+        fontSize: 10,
         marginLeft: 5,
         color: '#6b6b6b'
     }

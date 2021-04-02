@@ -12,6 +12,11 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/clementdlc)
 
 ___
+
+## Demo
+
+<a href="https://github.com/nocturneio"><img src="https://i.imgur.com/nhxjnyb.gif" height="300" width="145"/></a>
+
 ## Installation
 ### NPM
 ```
@@ -32,20 +37,21 @@ expo install react-native-autocomplete-france-address --save
 import AutocompleteAddress from 'react-native-autocomplete-france-address'
 
 render() {
-    return <AutocompleteAddress isOpen={true} 
+    return <AutocompleteAddress isOpen={this.state.modalAddress} 
                                 onFindAddress={(address) => {
                                     console.log(address)
-                                }} onSearchError={(e) => {
-                                    console.log(e)
-                                }} placeholder={"Cherchez une adresse, un lieu..."}/>
+                                }} 
+                                onCloseModal={() => this.setState({modalAddress: false})} 
+                                placeholder={"Cherchez une adresse, un lieu..."}/>
 }
 ```
 
 ## Properties
 ### Required
-- **onFindAddress(address)**: `Function` that return address from API when user click on entry,
+- **onFindAddress(address)**: `Function` that return address from API when user click on entry.
+- **onCloseModal()**: `Function` called when the modal need to be closed.
 - **isOpen**: `Boolean` that determinate if the modal for searching address is open or not.
-- **placeholder**: `String`,
+- **placeholder**: `String`.
   
 ### Optional
 - **onSearchError(error)**: `Function` that return an error if there is an error during the search.
