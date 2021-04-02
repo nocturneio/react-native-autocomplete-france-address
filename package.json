@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "homepage": "https://github.com/PHClement/react-native-autocomplete-france-address#readme",
   "description": "React Native module to search places using Data.Gouv API in France",
-  "main": "./src/index.js",
+  "main": "./index.js",
   "dependencies": {
     "axios": "^0.21.1",
     "prop-types": "^15.6.2"
@@ -36,7 +36,7 @@
     "places",
     "Autocomplete",
     "Address",
-    "France"
-  ],
-  "typings": "./index.d.ts"
+    "France",
+    "Data.gouv"
+  ]
 }
